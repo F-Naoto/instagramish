@@ -1,6 +1,13 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  #デフォルトでは、{モデルname}s
+  #UserモデルのidとLikeモデルのこのモデル（User）_idを結びつける
+  #違う場合は、class_name,foreign_keyの設定が必要
+  #active_relationships => active_relationshipモデルを探しにいくので、いやいや、そういうことじゃない。
+  #Relationshipモデルのuser_idと結びつけてね。
+  # class_name:"Relationship"
+  # foreign_key:"user_id"
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
