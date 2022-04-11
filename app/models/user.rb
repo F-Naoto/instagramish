@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy
   #デフォルトでは、{モデルname}s
   #UserモデルのidとLikeモデルのこのモデル（User）_idを結びつける
   #違う場合は、class_name,foreign_keyの設定が必要
